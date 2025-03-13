@@ -1,0 +1,13 @@
+.hero {
+	min-height: 25rem;
+	background-image: linear-gradient(rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%),
+		url("../assets/image-hero-desktop.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+
+	@media (max-width: 700px) {
+		background-image: linear-gradient(rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%),
+			url("../assets/image-hero-mobile.jpg");
+		background-repeat: no-repeat;
+	}
+}
