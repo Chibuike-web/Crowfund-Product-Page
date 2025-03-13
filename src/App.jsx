@@ -1,7 +1,8 @@
 import "./App.css";
+import CrowdfundPage from "./components/CrowdfundPage";
 
 function App() {
-	return <div className="bg-amber-400">Chibuike</div>;
+	return <CrowdfundPage />;
 }
 
 export default App;
