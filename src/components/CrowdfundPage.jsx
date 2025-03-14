@@ -11,9 +11,11 @@ export default function CrowdfundPage() {
 			<section className={styles.hero}>
 				<Navbar />
 			</section>
-			<ProductSection />
-			<Stats />
-			<About />
+			<div className=" max-md:px-6">
+				<ProductSection />
+				<Stats />
+				<About />
+			</div>
 		</main>
 	);
 }
