@@ -3,6 +3,7 @@ import Navbar from "./Navbar";
 import styles from "./CrowdfundPage.module.css";
 import ProductSection from "./ProductSection";
 import Stats from "./Stats";
+import About from "./About";
 
 export default function CrowdfundPage() {
 	return (
@@ -12,6 +13,7 @@ export default function CrowdfundPage() {
 			</section>
 			<ProductSection />
 			<Stats />
+			<About />
 		</main>
 	);
 }
