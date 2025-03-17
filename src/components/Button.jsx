@@ -15,7 +15,7 @@ export function BookmarkButton({ text }) {
 	return (
 		<button
 			type="button"
-			className={`flex gap-[10px] max-md:w-max items-center font-bold text-dark-gray w-max pr-6 h-[3.5rem] ${
+			className={`flex gap-[10px] max-md:w-max items-center font-bold text-dark-gray w-max pr-6 max-md:pr-0 h-[3.5rem] ${
 				bookmark ? "bg-moderate-cyan/10" : "bg-[rgba(122,122,122,0.1)]"
 			} rounded-full cursor-pointer`}
 			onClick={() => setBookmark(!bookmark)}

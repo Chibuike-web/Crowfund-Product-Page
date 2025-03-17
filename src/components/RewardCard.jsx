@@ -27,7 +27,7 @@ export default function RewardCard({ name, description, pledgeAmount, remainingS
 				) : (
 					<Button
 						text="Out of Stock"
-						className="bg-dark-gray w-[9.75rem] h-12 rounded-full text-white hover:bg-dark-cyan transition-colors duration-300 cursor-pointer"
+						className="bg-dark-gray w-[9.75rem] h-12 rounded-full text-white"
 					/>
 				)}
 			</div>

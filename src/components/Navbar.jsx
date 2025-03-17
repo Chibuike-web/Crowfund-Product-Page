@@ -35,8 +35,16 @@ const MobileNav = () => {
 				</div>
 			</div>
 			{mobileNav && (
-				<div className="fixed bg-black/25 z-20 inset-0 px-6 pt-[68px]">
-					<ul className="flex flex-col w-full top-[3.5rem] rounded-[0.5rem] bg-white text-[1rem] text-black font-medium ">
+				<div
+					className="fixed bg-black/25 z-20 inset-0 px-6 pt-[68px]"
+					onClick={() => {
+						setMobileNav(false);
+					}}
+				>
+					<ul
+						className="flex flex-col w-full top-[3.5rem] rounded-[0.5rem] bg-white text-[1rem] text-black font-medium"
+						onClick={(e) => e.stopPropagation()}
+					>
 						<li className="border-b border-dark-gray/50">
 							<span className="p-6 block">About</span>
 						</li>
