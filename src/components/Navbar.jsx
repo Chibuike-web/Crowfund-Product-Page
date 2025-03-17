@@ -11,7 +11,6 @@ export default function Navbar() {
 					<li>Discover</li>
 					<li>Get Started</li>
 				</ul>
-				<Harmburger />
 			</header>
 			<div className="hidden max-md:block">
 				<MobileNav />

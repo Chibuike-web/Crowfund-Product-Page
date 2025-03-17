@@ -13,3 +13,31 @@
 		min-height: 20rem;
 	}
 }
+
+.radio {
+	appearance: none; /* Removes default styles */
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background-color: transparent;
+	flex-shrink: 0;
+	position: relative;
+	cursor: pointer;
+}
+
+.radio::after {
+	content: "";
+	width: 20px;
+	height: 20px;
+	border: 2px solid gray;
+	background-color: transparent;
+	border-radius: 50%;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.radio:checked {
+	background-color: #3cb4ac;
+}
