@@ -25,21 +25,28 @@ export const Harmburger = ({ className = "" }) => {
 	);
 };
 
-export const Cancel = ({ className = "" }) => {
+export const Cancel = ({ className = "", fill = "white" }) => {
 	return (
-		<svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<svg
+			className={className}
+			width="14"
+			height="15"
+			viewBox="0 0 14 15"
+			fill="none"
+			xmlns="http://www.w3.org/2000/svg"
+		>
 			<g clipPath="url(#clip0_2021_45)">
 				<path
 					fillRule="evenodd"
 					clipRule="evenodd"
 					d="M2.40325 0.781982L13.7173 12.096L11.5953 14.218L0.28125 2.90398L2.40325 0.781982Z"
-					fill="white"
+					fill={fill}
 				/>
 				<path
 					fillRule="evenodd"
 					clipRule="evenodd"
 					d="M0.28125 12.096L11.5953 0.781982L13.7173 2.90398L2.40325 14.218L0.28125 12.096Z"
-					fill="white"
+					fill={fill}
 				/>
 			</g>
 			<defs>

@@ -3,7 +3,7 @@ import { Button } from "./Button";
 export default function RewardCard({ name, description, pledgeAmount, remainingStock }) {
 	return (
 		<article
-			className={`bg-white flex flex-col gap-6 w-full p-8 max-md:p-6 border border-dark-gray/50 rounded-lg ${
+			className={`flex flex-col gap-6 w-full p-8 max-md:p-6 border border-dark-gray/50 rounded-lg ${
 				remainingStock === 0 ? "opacity-50 cursor-not-allowed" : ""
 			}`}
 		>

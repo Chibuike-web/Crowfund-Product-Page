@@ -41,6 +41,7 @@ export default function About() {
 			<div className="flex flex-col gap-[40px]">
 				{pledgeRewards.map(({ name, description, pledgeAmount, remainingStock }) => (
 					<RewardCard
+						key={name}
 						name={name}
 						description={description}
 						pledgeAmount={pledgeAmount}
