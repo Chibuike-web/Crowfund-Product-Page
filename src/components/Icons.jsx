@@ -51,19 +51,26 @@ export const Cancel = ({ className = "" }) => {
 	);
 };
 
-export const BookmarkIcon = ({ className = "" }) => {
+export const BookmarkIcon = ({ className = "", outerColor = "", innerColor = "" }) => {
 	return (
-		<svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<svg
+			className={className}
+			width="56"
+			height="56"
+			viewBox="0 0 56 56"
+			fill="none"
+			xmlns="http://www.w3.org/2000/svg"
+		>
 			<g clipPath="url(#clip0_2063_253)">
 				<path
 					d="M28 56C43.464 56 56 43.464 56 28C56 12.536 43.464 0 28 0C12.536 0 0 12.536 0 28C0 43.464 12.536 56 28 56Z"
-					fill="#2F2F2F"
+					className={outerColor}
 				/>
 				<path
 					fillRule="evenodd"
 					clipRule="evenodd"
 					d="M23 19V37L28 31.942L33 37V19H23Z"
-					fill="#B1B1B1"
+					className={innerColor}
 				/>
 			</g>
 			<defs>

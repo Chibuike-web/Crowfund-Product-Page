@@ -3,7 +3,7 @@ import { Cancel, Harmburger } from "./Icons";
 
 export default function Navbar() {
 	return (
-		<nav className="w-full py-12 max-md:p-6">
+		<nav className="w-full py-12 max-md:p-6 max-lg:px-6">
 			<header className="mx-auto w-full max-w-[69.1875rem] flex justify-between relative max-md:hidden">
 				<img src="/logo.svg" alt="Crowfund Logo" />
 				<ul className="flex gap-8 text-white text-[0.875rem] ">
@@ -36,7 +36,7 @@ const MobileNav = () => {
 			</div>
 			{mobileNav && (
 				<div className="fixed bg-black/25 z-20 inset-0 px-6 pt-[68px]">
-					<ul className="flex flex-col w-full top-[3.5rem] rounded-2xl bg-white text-[1rem] text-black ">
+					<ul className="flex flex-col w-full top-[3.5rem] rounded-[0.5rem] bg-white text-[1rem] text-black font-medium ">
 						<li className="border-b border-dark-gray/50">
 							<span className="p-6 block">About</span>
 						</li>

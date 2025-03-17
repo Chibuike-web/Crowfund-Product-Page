@@ -22,12 +22,12 @@ export default function RewardCard({ name, description, pledgeAmount, remainingS
 				{remainingStock !== 0 ? (
 					<Button
 						text="Select Reward"
-						className="bg-moderate-cyan w-[9.75rem] h-12 rounded-full text-white"
+						className="bg-moderate-cyan w-[9.75rem] h-12 rounded-full text-white hover:bg-dark-cyan transition-colors duration-300 cursor-pointer"
 					/>
 				) : (
 					<Button
 						text="Out of Stock"
-						className="bg-dark-gray w-[9.75rem] h-12 rounded-full text-white"
+						className="bg-dark-gray w-[9.75rem] h-12 rounded-full text-white hover:bg-dark-cyan transition-colors duration-300 cursor-pointer"
 					/>
 				)}
 			</div>

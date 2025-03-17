@@ -16,7 +16,7 @@ export default function ProductSection() {
 			<div className="mt-10 mb-10 flex justify-between max-md:gap-3">
 				<Button
 					text="Back this project"
-					className="w-[12.75rem] h-[3.5rem] bg-moderate-cyan text-white rounded-full font-bold max-md:w-full"
+					className="w-[12.75rem] h-[3.5rem] bg-moderate-cyan text-white rounded-full font-bold max-md:w-full cursor-pointer hover:bg-dark-cyan transition-colors duration-300"
 				/>
 				<BookmarkButton text="Bookmark" />
 			</div>
