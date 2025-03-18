@@ -8,11 +8,11 @@ export default function BackProjectModal({ modal, setModal }) {
 	};
 	return (
 		<div
-			className="fixed bg-black/25 inset-0 z-50 justify-items-center content-center px-6"
+			className="absolute bg-black/25 inset-0 z-50 min-h-screen justify-items-center content-center px-6"
 			onClick={handleCancelButton}
 		>
 			<article
-				className="relative bg-white w-full max-w-[730px] px-12 py-12 rounded-[8px]"
+				className="relative bg-white w-full max-w-[730px] px-12 py-12 rounded-[8px] max-md:px-8 max-md:py-8"
 				onClick={(e) => {
 					e.stopPropagation();
 				}}

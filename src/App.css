@@ -10,3 +10,19 @@
 body {
 	font-family: "Commissioner";
 }
+
+input[type="number"]:focus {
+	outline: none;
+	box-shadow: none;
+	border-color: transparent;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+input[type="number"] {
+	-moz-appearance: textfield;
+}

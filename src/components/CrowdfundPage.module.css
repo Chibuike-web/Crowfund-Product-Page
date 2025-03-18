@@ -24,6 +24,10 @@
 	position: relative;
 	cursor: pointer;
 	margin-top: 6px;
+
+	@media (max-width: 700px) {
+		margin-top: 0;
+	}
 }
 
 .radio::after {

@@ -7,11 +7,11 @@ import About from "./About";
 
 export default function CrowdfundPage() {
 	return (
-		<main className="flex flex-col items-center bg-[#FAFAFA]">
+		<main className="relative flex flex-col items-center bg-[#FAFAFA] min-h-screen">
 			<section className={styles.hero}>
 				<Navbar />
 			</section>
-			<div className=" max-md:px-6">
+			<div className="max-md:px-6">
 				<ProductSection />
 				<Stats />
 				<About />
