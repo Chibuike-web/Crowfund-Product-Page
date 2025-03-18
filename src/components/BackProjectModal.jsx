@@ -1,14 +1,17 @@
 import React from "react";
 import { Cancel } from "./Icons";
 import PledgeCards from "./PledgeCards";
+import { useContext } from "react";
+import { ModalContext } from "./ModalContext";
 
-export default function BackProjectModal({ modal, setModal }) {
+export default function BackProjectModal() {
+	const { setModal } = useContext(ModalContext);
 	const handleCancelButton = () => {
 		setModal(false);
 	};
 	return (
 		<div
-			className="absolute bg-black/25 inset-0 z-50 min-h-screen justify-items-center content-center px-6"
+			className="hide-scrollbar fixed inset-0 bg-black/25 z-50 justify-items-center py-20 content-center px-6 overflow-y-auto"
 			onClick={handleCancelButton}
 		>
 			<article

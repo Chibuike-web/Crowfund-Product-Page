@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import styles from "./CrowdfundPage.module.css";
 import { Button } from "./Button";
+import { useContext } from "react";
+import { ModalContext } from "./ModalContext";
 
 const pledgeRewards = [
 	{
@@ -99,7 +101,7 @@ const PledgeCard = ({
 								)}
 							</h2>
 						</header>
-						<p className="text-[14px]">{description}</p>
+						<p className="text-[14px] text-dark-gray">{description}</p>
 					</article>
 				</label>
 				{activeCard === id && <EnterPledge pledgeAmount={pledgeAmount} id={id} />}
@@ -135,7 +137,7 @@ const PledgeCard = ({
 							</h3>
 						</header>
 					</article>
-					<p className="text-[14px]">{description}</p>
+					<p className="text-[14px] text-dark-gray">{description}</p>
 					<h2 className="font-bold text-[18px]">
 						{id !== 1 && (
 							<>
@@ -151,23 +153,32 @@ const PledgeCard = ({
 };
 
 const EnterPledge = ({ id, pledgeAmount }) => {
+	const [inputValue, setInputValue] = useState(pledgeAmount);
+	const { successModal, setSuccessModal } = useContext(ModalContext);
+	const { modal, setModal } = useContext(ModalContext);
+	const handleButtonClick = () => {
+		setSuccessModal(true);
+		setModal(false);
+	};
 	return (
 		<div className="px-8 py-6 border-t-[1px] border-dark-gray/15 flex justify-between items-center max-md:flex-col max-md:gap-4">
 			<p className="text-dark-gray">Enter your pledge</p>
 			<div className="flex gap-5 max-md:w-full">
-				<div className="border-[1px] border-dark-gray/50 w-full max-w-[5rem] rounded-full flex items-center px-4 gap-2 max-md:max-w-full">
+				<div className="border-[1px] border-dark-gray/50 w-full max-w-[6rem] rounded-full flex items-center px-4 gap-2 max-md:max-w-full">
 					<span className="font-bold text-dark-gray/50">$</span>
 					<input
 						type="number"
 						name="pledgeInput"
 						id="pledgeInput"
-						value={id !== 1 && pledgeAmount}
+						value={id !== 1 && inputValue}
 						className="w-full font-bold text-[14px] leading-[0px]"
+						onChange={(e) => setInputValue(e.target.value)}
 					/>
 				</div>
 				<Button
 					text="Continue"
 					className="bg-moderate-cyan hover:bg-dark-cyan text-white px-5 py-3 rounded-full font-medium text-[14px] cursor-pointer w-max max-md:w-full"
+					handleButtonClick={handleButtonClick}
 				/>
 			</div>
 		</div>

@@ -1,10 +1,14 @@
-import { useState } from "react";
 import { Button } from "./Button";
 import { BookmarkButton } from "./Button";
 import BackProjectModal from "./BackProjectModal";
+import { useContext } from "react";
+import { ModalContext } from "./ModalContext";
+import SuccessModal from "./SuccessModal";
 
 export default function ProductSection() {
-	const [modal, setModal] = useState(false);
+	const { modal, setModal } = useContext(ModalContext);
+	const { successModal } = useContext(ModalContext);
+
 	const handleButtonClick = () => {
 		setModal(true);
 	};
@@ -29,7 +33,8 @@ export default function ProductSection() {
 					<BookmarkButton text="Bookmark" />
 				</div>
 			</section>
-			{modal ? <BackProjectModal modal={modal} setModal={setModal} /> : ""}
+			{modal && <BackProjectModal />}
+			{successModal && <SuccessModal />}
 		</>
 	);
 }
