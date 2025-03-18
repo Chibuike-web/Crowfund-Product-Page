@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { BookmarkIcon } from "./Icons";
 
-export function Button({ text, className = "", handleButtonClick }) {
+export function Button({ text, className = "", handleButtonClick = "" }) {
 	return (
 		<button type="button" className={className} onClick={handleButtonClick}>
 			{text}

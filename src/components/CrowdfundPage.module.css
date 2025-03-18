@@ -16,19 +16,20 @@
 
 .radio {
 	appearance: none; /* Removes default styles */
-	width: 10px;
-	height: 10px;
+	width: 14px;
+	height: 14px;
 	border-radius: 50%;
 	background-color: transparent;
 	flex-shrink: 0;
 	position: relative;
 	cursor: pointer;
+	margin-top: 6px;
 }
 
 .radio::after {
 	content: "";
-	width: 20px;
-	height: 20px;
+	width: 24px;
+	height: 24px;
 	border: 2px solid gray;
 	background-color: transparent;
 	border-radius: 50%;
