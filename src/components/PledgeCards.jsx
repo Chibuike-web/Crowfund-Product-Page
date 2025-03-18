@@ -67,16 +67,18 @@ const PledgeCard = ({
 }) => {
 	const disabledStyle = remainingStock === 0 ? { opacity: 0.5, pointerEvents: "none" } : {};
 	return (
-		<section>
+		<section
+			className={`flex flex-col w-full justify-between rounded-[8px] cursor-pointer border-[1px] ${
+				activeCard === id ? "border-moderate-cyan" : "border-dark-gray/15"
+			}`}
+			style={disabledStyle}
+			onClick={() => {
+				handleActiveCard(id);
+			}}
+		>
 			<label
 				htmlFor={`pledge-${id}`}
-				className={`flex w-full justify-between px-8 py-8 rounded-[8px] gap-8 cursor-pointer border-[1px] ${
-					activeCard === id ? "border-moderate-cyan" : "border-dark-gray/15"
-				}`}
-				style={disabledStyle}
-				onClick={() => {
-					handleActiveCard(id);
-				}}
+				className="flex w-full justify-between rounded-[8px] gap-8 cursor-pointer px-8 py-8 "
 			>
 				<input type="radio" name="pledge" id={`pledge-${id}`} className={`${styles.radio}`} />
 				<article>
@@ -105,7 +107,7 @@ const PledgeCard = ({
 
 const EnterPledge = () => {
 	return (
-		<div>
+		<div className="px-8 py-6 border-t-[1px] border-dark-gray/15 flex justify-between">
 			<p>Enter your pledge</p>
 			<div>
 				<input type="text" name="" id="" />
