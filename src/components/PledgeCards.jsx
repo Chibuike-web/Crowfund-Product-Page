@@ -88,12 +88,7 @@ const PledgeCard = ({
 					className="flex flex-col rounded-[0.5rem] gap-4 cursor-pointer px-8 py-8 "
 				>
 					<div className="flex gap-6 items-center">
-						<input
-							type="radio"
-							name="pledge"
-							id={`pledge-mobile-${id}`}
-							className={`${styles.radio}`}
-						/>
+						<input type="radio" name="pledge" id={`pledge-${id}`} className={`${styles.radio}`} />
 						<header className="flex flex-col justify-between mb-4">
 							<h3 id={`pledge-title-${id}`} className="font-bold flex flex-col">
 								{name}{" "}

@@ -88,3 +88,29 @@ export const BookmarkIcon = ({ className = "", outerColor = "", innerColor = "" 
 		</svg>
 	);
 };
+
+export const CheckIcon = ({ className = "" }) => {
+	return (
+		<svg
+			className={className}
+			width="89"
+			height="88"
+			viewBox="0 0 89 88"
+			fill="none"
+			xmlns="http://www.w3.org/2000/svg"
+		>
+			<g clipPath="url(#clip0_2075_287)">
+				<path
+					d="M44.5 88C68.8005 88 88.5 68.3005 88.5 44C88.5 19.6995 68.8005 0 44.5 0C20.1995 0 0.5 19.6995 0.5 44C0.5 68.3005 20.1995 88 44.5 88Z"
+					fill="#3CB3AB"
+				/>
+				<path d="M28 43.8075L39.1279 55L61 33" stroke="white" stroke-width="6.875" />
+			</g>
+			<defs>
+				<clipPath id="clip0_2075_287">
+					<rect width="88" height="88" fill="white" transform="translate(0.5)" />
+				</clipPath>
+			</defs>
+		</svg>
+	);
+};
