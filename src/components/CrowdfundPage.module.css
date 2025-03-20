@@ -46,3 +46,8 @@
 .radio:checked {
 	background-color: #3cb4ac;
 }
+
+.disabled {
+	opacity: 0.5;
+	pointer-events: none;
+}

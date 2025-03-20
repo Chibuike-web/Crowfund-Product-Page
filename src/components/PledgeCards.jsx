@@ -3,6 +3,7 @@ import styles from "./CrowdfundPage.module.css";
 import { Button } from "./Button";
 import { useContext } from "react";
 import { ModalContext } from "./ModalContext";
+import { useMediaQuery } from "react-responsive";
 
 const pledgeRewards = [
 	{
@@ -37,11 +38,10 @@ const pledgeRewards = [
 
 export default function PledgeCards() {
 	const [activeCard, setActiveCard] = useState(0);
-	const handleActiveCard = (id) => {
-		setActiveCard(id);
-	};
+	const handleActiveCard = (id) => setActiveCard(id);
 	return (
-		<form className="flex flex-col gap-8">
+		<fieldset className="border-none flex flex-col gap-8">
+			<legend className="sr-only">Select a pledge</legend>
 			{pledgeRewards.map(({ id, name, description, pledgeAmount, remainingStock }) => (
 				<PledgeCard
 					key={id}
@@ -54,7 +54,7 @@ export default function PledgeCards() {
 					handleActiveCard={handleActiveCard}
 				/>
 			))}
-		</form>
+		</fieldset>
 	);
 }
 
@@ -67,61 +67,27 @@ const PledgeCard = ({
 	activeCard,
 	handleActiveCard,
 }) => {
-	const disabledStyle = remainingStock === 0 ? { opacity: 0.5, pointerEvents: "none" } : {};
-	return (
-		<>
-			<section
-				className={`max-md:hidden flex flex-col w-full justify-between rounded-[8px] cursor-pointer border-[1px] ${
+	const isMobile = useMediaQuery({ maxWidth: 767 });
+
+	// Mobile
+	if (isMobile) {
+		return (
+			<article
+				className={`flex flex-col w-full justify-between rounded-[0.5rem] cursor-pointer border-[0.0625rem] ${
 					activeCard === id ? "border-dark-cyan" : "border-dark-gray/15"
-				}`}
-				style={disabledStyle}
-				onClick={() => {
-					handleActiveCard(id);
-				}}
+				} ${remainingStock === 0 ? styles.disabled : ""}`}
+				onClick={() => handleActiveCard(id)}
+				role="radio"
+				aria-checked={activeCard === id}
+				aria-labelledby={`pledge-title-${id}`}
+				aria-describedby={`pledge-desc-${id}`}
+				tabIndex="0"
 			>
 				<label
 					htmlFor={`pledge-${id}`}
-					className="flex w-full justify-between rounded-[8px] gap-8 cursor-pointer px-8 py-8 "
+					className="flex flex-col rounded-[0.5rem] gap-4 cursor-pointer px-8 py-8 "
 				>
-					<input type="radio" name="pledge" id={`pledge-${id}`} className={`${styles.radio}`} />
-					<article>
-						<header className="flex justify-between mb-4">
-							<h3 className="font-bold">
-								{name}{" "}
-								{id !== 1 && (
-									<span className="text-moderate-cyan ml-4">Pledge ${pledgeAmount} or more</span>
-								)}
-							</h3>
-							<h2 className="font-bold text-[18px]">
-								{id !== 1 && (
-									<>
-										{remainingStock}{" "}
-										<span className="font-medium text-dark-gray ml-[6px]">left</span>
-									</>
-								)}
-							</h2>
-						</header>
-						<p className="text-[14px] text-dark-gray">{description}</p>
-					</article>
-				</label>
-				{activeCard === id && <EnterPledge pledgeAmount={pledgeAmount} id={id} />}
-			</section>
-
-			{/* Mobile Version */}
-			<section
-				className={`hidden max-md:flex flex-col w-full justify-between rounded-[8px] cursor-pointer border-[1px] ${
-					activeCard === id ? "border-dark-cyan" : "border-dark-gray/15"
-				}`}
-				style={disabledStyle}
-				onClick={() => {
-					handleActiveCard(id);
-				}}
-			>
-				<label
-					htmlFor={`pledge-mobile-${id}`}
-					className="flex flex-col rounded-[8px] gap-4 cursor-pointer px-8 py-8 "
-				>
-					<article className="flex gap-6 items-center">
+					<div className="flex gap-6 items-center">
 						<input
 							type="radio"
 							name="pledge"
@@ -129,58 +95,106 @@ const PledgeCard = ({
 							className={`${styles.radio}`}
 						/>
 						<header className="flex flex-col justify-between mb-4">
-							<h3 className="font-bold flex flex-col">
+							<h3 id={`pledge-title-${id}`} className="font-bold flex flex-col">
 								{name}{" "}
 								{id !== 1 && (
 									<span className="text-moderate-cyan">Pledge ${pledgeAmount} or more</span>
 								)}
 							</h3>
 						</header>
-					</article>
-					<p className="text-[14px] text-dark-gray">{description}</p>
-					<h2 className="font-bold text-[18px]">
-						{id !== 1 && (
-							<>
-								{remainingStock} <span className="font-medium text-dark-gray">left</span>
-							</>
-						)}
-					</h2>
+					</div>
+					<p id={`pledge-desc-${id}`} className="text-[0.875rem] text-dark-gray">
+						{description}
+					</p>
+					{id !== 1 && (
+						<p className="font-bold text-[1.125rem]">
+							{remainingStock} <span className="font-medium text-dark-gray">left</span>
+						</p>
+					)}
 				</label>
 				{activeCard === id && <EnterPledge pledgeAmount={pledgeAmount} id={id} />}
-			</section>
-		</>
+			</article>
+		);
+	}
+
+	// Desktop
+	return (
+		<article
+			className={`flex flex-col w-full justify-between rounded-[0.5rem] cursor-pointer border-[0.0625rem] ${
+				activeCard === id ? "border-dark-cyan" : "border-dark-gray/15"
+			} ${remainingStock === 0 ? styles.disabled : ""}`}
+			onClick={() => handleActiveCard(id)}
+			role="radio"
+			aria-checked={activeCard === id}
+			aria-labelledby={`pledge-title-${id}`}
+			aria-describedby={`pledge-desc-${id}`}
+			tabIndex="0"
+		>
+			<label
+				htmlFor={`pledge-${id}`}
+				className="flex w-full justify-between rounded-[0.5rem] gap-8 cursor-pointer px-8 py-8 "
+			>
+				<input type="radio" name="pledge" id={`pledge-${id}`} className={`${styles.radio}`} />
+				<div>
+					<header className="flex justify-between mb-4">
+						<h3 id={`pledge-title-${id}`} className="font-bold">
+							{name}{" "}
+							{id !== 1 && (
+								<span className="text-moderate-cyan ml-4">Pledge ${pledgeAmount} or more</span>
+							)}
+						</h3>
+
+						{id !== 1 && (
+							<p className="font-bold text-[1.125rem]">
+								{remainingStock} <span className="font-medium text-dark-gray ml-[6px]">left</span>
+							</p>
+						)}
+					</header>
+					<p id={`pledge-desc-${id}`} className="text-[0.875rem] text-dark-gray">
+						{description}
+					</p>
+				</div>
+			</label>
+			{activeCard === id && <EnterPledge pledgeAmount={pledgeAmount} id={id} />}
+		</article>
 	);
 };
 
 const EnterPledge = ({ id, pledgeAmount }) => {
 	const [inputValue, setInputValue] = useState(pledgeAmount);
-	const { successModal, setSuccessModal } = useContext(ModalContext);
-	const { modal, setModal } = useContext(ModalContext);
-	const handleButtonClick = () => {
+	const { setSuccessModal, setModal } = useContext(ModalContext);
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
 		setSuccessModal(true);
 		setModal(false);
 	};
 	return (
-		<div className="px-8 py-6 border-t-[1px] border-dark-gray/15 flex justify-between items-center max-md:flex-col max-md:gap-4">
-			<p className="text-dark-gray">Enter your pledge</p>
+		<form
+			className="px-8 py-6 border-t-[0.0625rem] border-dark-gray/15 flex justify-between items-center max-md:flex-col max-md:gap-4"
+			onSubmit={handleSubmit}
+		>
+			<label htmlFor={`pledgeInput-${id}`} className="text-dark-gray">
+				Enter your pledge
+			</label>
 			<div className="flex gap-5 max-md:w-full">
-				<div className="border-[1px] border-dark-gray/50 w-full max-w-[6rem] rounded-full flex items-center px-4 gap-2 max-md:max-w-full">
+				<div className="border-[0.0625rem] border-dark-gray/50 w-full max-w-[6rem] rounded-full flex items-center px-4 gap-2 max-md:max-w-full">
 					<span className="font-bold text-dark-gray/50">$</span>
 					<input
 						type="number"
 						name="pledgeInput"
 						id="pledgeInput"
 						value={id !== 1 && inputValue}
-						className="w-full font-bold text-[14px] leading-[0px]"
+						className="w-full font-bold text-[0.875rem] leading-[0rem]"
 						onChange={(e) => setInputValue(e.target.value)}
 					/>
 				</div>
 				<Button
 					text="Continue"
-					className="bg-moderate-cyan hover:bg-dark-cyan text-white px-5 py-3 rounded-full font-medium text-[14px] cursor-pointer w-max max-md:w-full"
-					handleButtonClick={handleButtonClick}
+					type="submit"
+					className="bg-moderate-cyan hover:bg-dark-cyan text-white px-5 py-3 rounded-full font-medium text-[0.875rem] cursor-pointer w-max max-md:w-full"
 				/>
 			</div>
-		</div>
+		</form>
 	);
 };
