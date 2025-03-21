@@ -2,10 +2,10 @@ import React from "react";
 import { Cancel } from "./Icons";
 import PledgeCards from "./PledgeCards";
 import { useContext } from "react";
-import { ModalContext } from "./ModalContext";
+import { Context } from "./Context";
 
 export default function BackProjectModal() {
-	const { setModal } = useContext(ModalContext);
+	const { setModal } = useContext(Context);
 	const handleCancelButton = () => {
 		setModal(false);
 	};

@@ -43,6 +43,10 @@
 	transform: translate(-50%, -50%);
 }
 
+.radio.hovered::after {
+	border: 2px solid #3cb4ac;
+}
+
 .radio:checked {
 	background-color: #3cb4ac;
 }
@@ -50,4 +54,8 @@
 .disabled {
 	opacity: 0.5;
 	pointer-events: none;
+}
+
+.pledge-name:hover {
+	color: #3cb4ac;
 }

@@ -1,10 +1,11 @@
 import { useContext } from "react";
-import { ModalContext } from "./ModalContext";
+import { Context } from "./Context";
 import { CheckIcon } from "./Icons";
 import { Button } from "./Button";
 
 export default function SuccessModal() {
-	const { setSuccessModal } = useContext(ModalContext);
+	const { setSuccessModal, reward } = useContext(Context);
+
 	return (
 		<div
 			className="fixed inset-0 z-50 flex items-center justify-center bg-black/25 px-6"
@@ -18,12 +19,12 @@ export default function SuccessModal() {
 				onClick={(e) => e.stopPropagation()}
 			>
 				<CheckIcon />
-				<h1 id="modal-title" className="text-[1.5rem] font-bold mt-6">
+				<h1 id="modal-title" className="text-[1.5rem] font-bold text-center mt-6">
 					Thanks for your support
 				</h1>
 				<p className="text-dark-gray font-medium mt-4 mb-8 text-center">
-					Your pledge brings us one step closer to sharing Mastercraft Bamboo Monitor Riser
-					worldwide. You will get an email once our campaign is completed.{" "}
+					Your pledge brings us one step closer to sharing {reward} worldwide. You will get an email
+					once our campaign is completed.
 				</p>
 				<Button
 					text="Got it"

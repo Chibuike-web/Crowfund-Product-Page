@@ -1,12 +1,12 @@
 import "./App.css";
 import CrowdfundPage from "./components/CrowdfundPage";
-import ModalProvider from "./components/ModalContext";
+import Provider from "./components/Context";
 
 function App() {
 	return (
-		<ModalProvider>
+		<Provider>
 			<CrowdfundPage />
-		</ModalProvider>
+		</Provider>
 	);
 }
 

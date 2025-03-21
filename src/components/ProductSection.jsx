@@ -2,12 +2,11 @@ import { Button } from "./Button";
 import { BookmarkButton } from "./Button";
 import BackProjectModal from "./BackProjectModal";
 import { useContext } from "react";
-import { ModalContext } from "./ModalContext";
+import { Context } from "./Context";
 import SuccessModal from "./SuccessModal";
 
 export default function ProductSection() {
-	const { modal, setModal } = useContext(ModalContext);
-	const { successModal } = useContext(ModalContext);
+	const { modal, setModal, successModal } = useContext(Context);
 
 	const handleButtonClick = () => {
 		setModal(true);

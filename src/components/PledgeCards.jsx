@@ -2,42 +2,11 @@ import React, { useState } from "react";
 import styles from "./CrowdfundPage.module.css";
 import { Button } from "./Button";
 import { useContext } from "react";
-import { ModalContext } from "./ModalContext";
+import { Context } from "./Context";
 import { useMediaQuery } from "react-responsive";
 
-const pledgeRewards = [
-	{
-		id: 1,
-		name: "Pledge with no reward",
-		description: `Choose to support us without a reward if you simply believe in our project. As a backer, you will be signed up to receive product updates via email.`,
-		pledgeAmount: 25,
-		remainingStock: 101,
-	},
-	{
-		id: 2,
-		name: "Bamboo Stand",
-		description: `You get an ergonomic stand made of natural bamboo. You’ve helped us launch our promotional campaign, and you’ll be added to a special Backer member list.`,
-		pledgeAmount: 25,
-		remainingStock: 101,
-	},
-	{
-		id: 3,
-		name: "Black Edition Stand",
-		description: `You get a Black Special Edition computer stand and a personal thank you. You’ll be added to our Backer member list. Shipping is included.`,
-		pledgeAmount: 75,
-		remainingStock: 64,
-	},
-	{
-		id: 4,
-		name: "Mahogany Special Edition",
-		description: `You get two Special Edition Mahogany stands, a Backer T-Shirt, and a personal thank you. You’ll be added to our Backer member list. Shipping is included.`,
-		pledgeAmount: 200,
-		remainingStock: 0,
-	},
-];
-
 export default function PledgeCards() {
-	const [activeCard, setActiveCard] = useState(0);
+	const { pledgeRewards, activeCard, setActiveCard } = useContext(Context);
 	const handleActiveCard = (id) => setActiveCard(id);
 	return (
 		<fieldset className="border-none flex flex-col gap-8">
@@ -68,7 +37,7 @@ const PledgeCard = ({
 	handleActiveCard,
 }) => {
 	const isMobile = useMediaQuery({ maxWidth: 767 });
-
+	const [hover, setHover] = useState(false);
 	// Mobile
 	if (isMobile) {
 		return (
@@ -116,8 +85,11 @@ const PledgeCard = ({
 	return (
 		<article
 			className={`flex flex-col w-full justify-between rounded-[0.5rem] cursor-pointer border-[0.0625rem] ${
-				activeCard === id ? "border-dark-cyan" : "border-dark-gray/15"
-			} ${remainingStock === 0 ? styles.disabled : ""}`}
+				styles["pledge-container"]
+			} 
+ ${activeCard === id ? "border-moderate-cyan" : "border-dark-gray/15"} ${
+				remainingStock === 0 ? styles.disabled : ""
+			}`}
 			onClick={() => handleActiveCard(id)}
 			role="radio"
 			aria-checked={activeCard === id}
@@ -129,11 +101,22 @@ const PledgeCard = ({
 				htmlFor={`pledge-${id}`}
 				className="flex w-full justify-between rounded-[0.5rem] gap-8 cursor-pointer px-8 py-8 "
 			>
-				<input type="radio" name="pledge" id={`pledge-${id}`} className={`${styles.radio}`} />
+				<input
+					type="radio"
+					name="pledge"
+					id={`pledge-${id}`}
+					className={`${styles.radio} ${hover && activeCard !== id ? styles.hovered : ""}`}
+				/>
 				<div>
 					<header className="flex justify-between mb-4">
 						<h3 id={`pledge-title-${id}`} className="font-bold">
-							{name}{" "}
+							<span
+								className={activeCard === id ? "" : styles["pledge-name"]}
+								onMouseEnter={() => setHover(true)}
+								onMouseLeave={() => setHover(false)}
+							>
+								{name}
+							</span>
 							{id !== 1 && (
 								<span className="text-moderate-cyan ml-4">Pledge ${pledgeAmount} or more</span>
 							)}
@@ -157,22 +140,25 @@ const PledgeCard = ({
 
 const EnterPledge = ({ id, pledgeAmount }) => {
 	const [inputValue, setInputValue] = useState(pledgeAmount);
-	const { setSuccessModal, setModal } = useContext(ModalContext);
+	const { setSuccessModal, setModal, pledgeRewards, setReward, activeCard, setActiveCard } =
+		useContext(Context);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		setSuccessModal(true);
 		setModal(false);
+		pledgeRewards.map((item) => (activeCard === item.id ? setReward(item.name) : ""));
+		setActiveCard(0);
 	};
 	return (
 		<form
-			className="px-8 py-6 border-t-[0.0625rem] border-dark-gray/15 flex justify-between items-center max-md:flex-col max-md:gap-4"
+			className="px-8 py-6 border-t-[0.0625rem] border-dark-gray/15 flex justify-between items-center max-md:flex-col max-md:px-4 max-md:gap-4"
 			onSubmit={handleSubmit}
 		>
 			<label htmlFor={`pledgeInput-${id}`} className="text-dark-gray">
 				Enter your pledge
 			</label>
-			<div className="flex gap-5 max-md:w-full">
+			<div className="flex gap-5 max-md:w-full max-md:gap-3">
 				<div className="border-[0.0625rem] border-dark-gray/50 w-full max-w-[6rem] rounded-full flex items-center px-4 gap-2 max-md:max-w-full">
 					<span className="font-bold text-dark-gray/50">$</span>
 					<input
