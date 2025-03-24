@@ -28,7 +28,7 @@ export default function SuccessModal() {
 				</p>
 				<Button
 					text="Got it"
-					className="h-12 bg-moderate-cyan w-[6.75rem] rounded-full text-white cursor-pointer"
+					className="h-12 bg-moderate-cyan w-[6.75rem] rounded-full text-white cursor-pointer hover:bg-dark-cyan transition-colors duration-300"
 					handleButtonClick={() => setSuccessModal(false)}
 				/>
 			</section>
