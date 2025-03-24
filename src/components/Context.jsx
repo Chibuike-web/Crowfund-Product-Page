@@ -37,6 +37,8 @@ export default function Provider({ children }) {
 	];
 
 	const [pledges, setPledges] = useState(pledgeRewards);
+	const [totalBackers, setTotalBackers] = useState("5007");
+	const [totalAmount, setTotalAmount] = useState(89914);
 	return (
 		<Context.Provider
 			value={{
@@ -51,6 +53,8 @@ export default function Provider({ children }) {
 				setReward,
 				pledges,
 				setPledges,
+				totalAmount,
+				setTotalAmount,
 			}}
 		>
 			{children}

@@ -5,9 +5,10 @@ import { useContext } from "react";
 import { Context } from "./Context";
 
 export default function BackProjectModal() {
-	const { setModal } = useContext(Context);
+	const { setModal, setActiveCard } = useContext(Context);
 	const handleCancelButton = () => {
 		setModal(false);
+		setActiveCard(0);
 	};
 	return (
 		<div

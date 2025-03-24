@@ -140,8 +140,15 @@ const PledgeCard = ({
 
 const EnterPledge = ({ id, pledgeAmount }) => {
 	const [inputValue, setInputValue] = useState(pledgeAmount);
-	const { setSuccessModal, setModal, pledgeRewards, setReward, activeCard, setActiveCard } =
-		useContext(Context);
+	const {
+		setSuccessModal,
+		setModal,
+		pledgeRewards,
+		setReward,
+		activeCard,
+		setActiveCard,
+		setTotalAmount,
+	} = useContext(Context);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -149,6 +156,7 @@ const EnterPledge = ({ id, pledgeAmount }) => {
 		setModal(false);
 		pledgeRewards.map((item) => (activeCard === item.id ? setReward(item.name) : ""));
 		setActiveCard(0);
+		setTotalAmount((prev) => prev + Number(inputValue));
 	};
 	return (
 		<form
@@ -164,8 +172,8 @@ const EnterPledge = ({ id, pledgeAmount }) => {
 					<input
 						type="number"
 						name="pledgeInput"
-						id="pledgeInput"
-						value={id !== 1 && inputValue}
+						id={`pledgeInput-${id}`}
+						value={inputValue}
 						className="w-full font-bold text-[0.875rem] leading-[0rem]"
 						onChange={(e) => setInputValue(e.target.value)}
 					/>

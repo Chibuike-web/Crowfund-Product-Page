@@ -1,6 +1,9 @@
 import React from "react";
+import { useContext } from "react";
+import { Context } from "./Context";
 
 export default function Stats() {
+	const { totalAmount } = useContext(Context);
 	return (
 		<section
 			className="bg-white flex flex-col mt-[26px] w-full max-w-[45.625rem] py-10 px-12 max-md:px-6 border border-gray-200 rounded-[0.5rem] gap-[30px]"
@@ -9,7 +12,7 @@ export default function Stats() {
 			<div className="flex w-full max-w-[514px] justify-between max-md:flex-col max-md:gap-6 max-md:items-center max-md:max-w-full">
 				<article className="flex flex-col">
 					<strong className="block text-[2rem] font-bold max-md:text-center max-md:text-[1.75rem]">
-						$89,914
+						${totalAmount.toLocaleString()}
 					</strong>
 					<p className="text-dark-gray font-medium max-md:text-[0.75rem]">of $100,000 backed</p>
 				</article>
