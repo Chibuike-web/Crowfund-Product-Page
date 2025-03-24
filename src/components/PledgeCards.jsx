@@ -6,12 +6,12 @@ import { Context } from "./Context";
 import { useMediaQuery } from "react-responsive";
 
 export default function PledgeCards() {
-	const { pledgeRewards, activeCard, setActiveCard } = useContext(Context);
+	const { pledges, activeCard, setActiveCard } = useContext(Context);
 	const handleActiveCard = (id) => setActiveCard(id);
 	return (
 		<fieldset className="border-none flex flex-col gap-8">
 			<legend className="sr-only">Select a pledge</legend>
-			{pledgeRewards.map(({ id, name, description, pledgeAmount, remainingStock }) => (
+			{pledges.map(({ id, name, description, pledgeAmount, remainingStock }) => (
 				<PledgeCard
 					key={id}
 					id={id}

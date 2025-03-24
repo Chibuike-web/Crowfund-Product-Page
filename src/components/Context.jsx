@@ -12,8 +12,6 @@ export default function Provider({ children }) {
 			id: 1,
 			name: "Pledge with no reward",
 			description: `Choose to support us without a reward if you simply believe in our project. As a backer, you will be signed up to receive product updates via email.`,
-			pledgeAmount: 25,
-			remainingStock: 101,
 		},
 		{
 			id: 2,
@@ -37,6 +35,8 @@ export default function Provider({ children }) {
 			remainingStock: 0,
 		},
 	];
+
+	const [pledges, setPledges] = useState(pledgeRewards);
 	return (
 		<Context.Provider
 			value={{
@@ -49,6 +49,8 @@ export default function Provider({ children }) {
 				setActiveCard,
 				reward,
 				setReward,
+				pledges,
+				setPledges,
 			}}
 		>
 			{children}

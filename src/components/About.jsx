@@ -1,30 +1,9 @@
 import RewardCard from "./RewardCard";
-
-const pledgeRewards = [
-	{
-		id: 1,
-		name: "Bamboo Stand",
-		description: `You get an ergonomic stand made of natural bamboo. You’ve helped us launch our promotional campaign, and you’ll be added to a special Backer member list.`,
-		pledgeAmount: 25,
-		remainingStock: 101,
-	},
-	{
-		id: 2,
-		name: "Black Edition Stand",
-		description: `You get a Black Special Edition computer stand and a personal thank you. You’ll be added to our Backer member list. Shipping is included.`,
-		pledgeAmount: 75,
-		remainingStock: 64,
-	},
-	{
-		id: 3,
-		name: "Mahogany Special Edition",
-		description: `You get two Special Edition Mahogany stands, a Backer T-Shirt, and a personal thank you. You’ll be added to our Backer member list. Shipping is included.`,
-		pledgeAmount: 200,
-		remainingStock: 0,
-	},
-];
+import { useContext } from "react";
+import { Context } from "./Context";
 
 export default function About() {
+	const { pledges } = useContext(Context);
 	return (
 		<section
 			className="bg-white flex flex-col mt-[26px] w-full max-w-[45.625rem] py-10 px-12 max-md:px-6 border border-gray-200 rounded-[0.5rem] gap-[30px]"
@@ -42,15 +21,18 @@ export default function About() {
 				your computer to allow notepads, pens and USB sticks to be stored under the stand.
 			</p>
 			<div className="flex flex-col gap-[40px]">
-				{pledgeRewards.map(({ id, name, description, pledgeAmount, remainingStock }) => (
-					<RewardCard
-						key={`pledge${id}`}
-						name={name}
-						description={description}
-						pledgeAmount={pledgeAmount}
-						remainingStock={remainingStock}
-					/>
-				))}
+				{pledges.map(
+					({ id, name, description, pledgeAmount, remainingStock }) =>
+						id !== 1 && (
+							<RewardCard
+								key={`pledge${id}`}
+								name={name}
+								description={description}
+								pledgeAmount={pledgeAmount}
+								remainingStock={remainingStock}
+							/>
+						)
+				)}
 			</div>
 		</section>
 	);
