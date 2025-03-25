@@ -140,6 +140,7 @@ const PledgeCard = ({
 
 const EnterPledge = ({ id, pledgeAmount }) => {
 	const [inputValue, setInputValue] = useState(pledgeAmount);
+	const [focus, setFocus] = useState(null);
 	const {
 		setSuccessModal,
 		setModal,
@@ -173,7 +174,11 @@ const EnterPledge = ({ id, pledgeAmount }) => {
 				Enter your pledge
 			</label>
 			<div className="flex gap-5 max-md:w-full max-md:gap-3">
-				<div className="border-[0.0625rem] border-dark-gray/50 w-full max-w-[6rem] rounded-full flex items-center px-4 gap-2 max-md:max-w-full">
+				<div
+					className={`border-[0.0625rem] border-dark-gray/50 ${
+						focus ? "border-moderate-cyan" : ""
+					} w-full max-w-[6rem] rounded-full flex items-center px-4 gap-2 max-md:max-w-full`}
+				>
 					<span className="font-bold text-dark-gray/50">$</span>
 					<input
 						type="number"
@@ -182,6 +187,8 @@ const EnterPledge = ({ id, pledgeAmount }) => {
 						value={inputValue}
 						className="w-full font-bold text-[0.875rem] leading-[0rem]"
 						onChange={(e) => setInputValue(e.target.value)}
+						onFocus={() => setFocus(id)}
+						onBlur={(e) => (!e.target.value.trim() && focus === id ? setFocus(null) : setFocus(id))}
 					/>
 				</div>
 				<Button
