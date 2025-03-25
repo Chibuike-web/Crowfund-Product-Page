@@ -1,6 +1,13 @@
 import { Button } from "./Button";
+import { useContext } from "react";
+import { Context } from "./Context";
 
-export default function RewardCard({ name, description, pledgeAmount, remainingStock }) {
+export default function RewardCard({ id, name, description, pledgeAmount, remainingStock }) {
+	const { setModal, setActiveCard } = useContext(Context);
+	const handleButtonClick = (itemId) => {
+		setModal(true);
+		itemId === id ? setActiveCard(id) : "";
+	};
 	return (
 		<article
 			className={`flex flex-col gap-6 w-full p-8 max-md:p-6 border border-dark-gray/50 rounded-lg ${
@@ -23,6 +30,7 @@ export default function RewardCard({ name, description, pledgeAmount, remainingS
 					<Button
 						text="Select Reward"
 						className="bg-moderate-cyan w-[9.75rem] h-12 rounded-full text-white hover:bg-dark-cyan transition-colors duration-300 cursor-pointer"
+						handleButtonClick={() => handleButtonClick(id)}
 					/>
 				) : (
 					<Button

@@ -27,6 +27,7 @@ export default function About() {
 							<RewardCard
 								key={`pledge${id}`}
 								name={name}
+								id={id}
 								description={description}
 								pledgeAmount={pledgeAmount}
 								remainingStock={remainingStock}
