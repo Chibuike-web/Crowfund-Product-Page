@@ -104,7 +104,7 @@ export const CheckIcon = ({ className = "" }) => {
 					d="M44.5 88C68.8005 88 88.5 68.3005 88.5 44C88.5 19.6995 68.8005 0 44.5 0C20.1995 0 0.5 19.6995 0.5 44C0.5 68.3005 20.1995 88 44.5 88Z"
 					fill="#3CB3AB"
 				/>
-				<path d="M28 43.8075L39.1279 55L61 33" stroke="white" stroke-width="6.875" />
+				<path d="M28 43.8075L39.1279 55L61 33" stroke="white" strokeWidth="6.875" />
 			</g>
 			<defs>
 				<clipPath id="clip0_2075_287">

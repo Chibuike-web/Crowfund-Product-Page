@@ -46,7 +46,6 @@ export default function Provider({ children }) {
 				setModal,
 				successModal,
 				setSuccessModal,
-				pledgeRewards,
 				activeCard,
 				setActiveCard,
 				reward,
@@ -55,6 +54,8 @@ export default function Provider({ children }) {
 				setPledges,
 				totalAmount,
 				setTotalAmount,
+				totalBackers,
+				setTotalBackers,
 			}}
 		>
 			{children}

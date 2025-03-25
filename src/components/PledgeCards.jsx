@@ -143,7 +143,8 @@ const EnterPledge = ({ id, pledgeAmount }) => {
 	const {
 		setSuccessModal,
 		setModal,
-		pledgeRewards,
+		pledges,
+		setPledges,
 		setReward,
 		activeCard,
 		setActiveCard,
@@ -154,10 +155,15 @@ const EnterPledge = ({ id, pledgeAmount }) => {
 		e.preventDefault();
 		setSuccessModal(true);
 		setModal(false);
-		pledgeRewards.map((item) => (activeCard === item.id ? setReward(item.name) : ""));
+		pledges.map((item) => (activeCard === item.id ? setReward(item.name) : ""));
 		setActiveCard(0);
 		setTotalAmount((prev) => prev + Number(inputValue));
+		const newPledges = pledges.map((item) =>
+			item.id === activeCard ? { ...item, remainingStock: item.remainingStock - 1 } : item
+		);
+		setPledges(newPledges);
 	};
+
 	return (
 		<form
 			className="px-8 py-6 border-t-[0.0625rem] border-dark-gray/15 flex justify-between items-center max-md:flex-col max-md:px-4 max-md:gap-4"
