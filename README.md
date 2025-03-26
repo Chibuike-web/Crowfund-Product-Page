@@ -1,12 +1,18 @@
-# React + Vite
+# Frontend Mentor - Crowdfund Product page
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 📌 Overview
 
-Currently, two official plugins are available:
+This is a **Crowdfunding Application** built with **React**, featuring pledge-based funding for projects. Users can select rewards, enter custom pledge amounts, and track funding progress dynamically.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Expanding the ESLint configuration
+- Users can select from multiple pledge tiers, each with a predefined minimum amount and limited stock.
+- A real-time progress bar updates as new pledges are made.
+- Users can enter custom pledge amounts for unlocked tiers.
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Technologies Used
+
+- **React** (UI framework)
+- **Vite** (Fast build tool)
+- **JavaScript (ES6+)**
+- **TailwindCSS v4.0** (Styling)
