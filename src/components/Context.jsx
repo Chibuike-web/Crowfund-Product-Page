@@ -35,7 +35,8 @@ export default function Provider({ children }) {
 			remainingStock: 0,
 		},
 	];
-
+	const initialProgress = (89914 / 100000) * 100;
+	const [progress, setProgress] = useState(initialProgress);
 	const [pledges, setPledges] = useState(pledgeRewards);
 	const [totalBackers, setTotalBackers] = useState(5007);
 	const [totalAmount, setTotalAmount] = useState(89914);
@@ -56,6 +57,8 @@ export default function Provider({ children }) {
 				setTotalAmount,
 				totalBackers,
 				setTotalBackers,
+				progress,
+				setProgress,
 			}}
 		>
 			{children}

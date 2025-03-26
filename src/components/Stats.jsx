@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { Context } from "./Context";
 
 export default function Stats() {
-	const { totalAmount, totalBackers } = useContext(Context);
+	const { totalAmount, totalBackers, progress } = useContext(Context);
 	return (
 		<section
 			className="bg-white flex flex-col mt-[26px] w-full max-w-[45.625rem] py-10 px-12 max-md:px-6 border border-gray-200 rounded-[0.5rem] gap-[30px]"
@@ -32,7 +32,10 @@ export default function Stats() {
 				</article>
 			</div>
 			<div className="block bg-dark-gray/10 w-full h-[12px] rounded-full">
-				<span className="block bg-moderate-cyan w-[50%] min-h-full rounded-full"></span>
+				<span
+					className="block bg-moderate-cyan min-h-full rounded-full"
+					style={{ width: `${progress}%` }}
+				></span>
 			</div>
 		</section>
 	);

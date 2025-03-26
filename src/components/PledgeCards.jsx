@@ -151,8 +151,11 @@ const EnterPledge = ({ id, pledgeAmount }) => {
 		setReward,
 		activeCard,
 		setActiveCard,
+		totalAmount,
 		setTotalAmount,
 		setTotalBackers,
+		progress,
+		setProgress,
 	} = useContext(Context);
 
 	useEffect(() => {
@@ -161,6 +164,7 @@ const EnterPledge = ({ id, pledgeAmount }) => {
 				inputRef.current.focus();
 			}, 0);
 		}
+		console.log(progress);
 	}, [activeCard, id]);
 
 	const handleSubmit = (e) => {
@@ -175,6 +179,7 @@ const EnterPledge = ({ id, pledgeAmount }) => {
 		);
 		setPledges(newPledges);
 		setTotalBackers((prev) => prev + 1);
+		setProgress((prev) => prev + (inputValue / 100000) * 100);
 	};
 
 	return (
