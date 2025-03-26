@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { Context } from "./Context";
 
 export default function Stats() {
-	const { totalAmount } = useContext(Context);
+	const { totalAmount, totalBackers } = useContext(Context);
 	return (
 		<section
 			className="bg-white flex flex-col mt-[26px] w-full max-w-[45.625rem] py-10 px-12 max-md:px-6 border border-gray-200 rounded-[0.5rem] gap-[30px]"
@@ -19,7 +19,7 @@ export default function Stats() {
 				<span className="block w-[1px] min-h-[100%] bg-dark-gray/50 max-md:h-[1px] max-md:w-[35%]"></span>
 				<article className="flex flex-col">
 					<strong className="block text-[2rem] font-bold max-md:text-center max-md:text-[1.75rem]">
-						5,007
+						{totalBackers.toLocaleString()}
 					</strong>
 					<p className="text-dark-gray font-medium max-md:text-[0.75rem]">total backers</p>
 				</article>

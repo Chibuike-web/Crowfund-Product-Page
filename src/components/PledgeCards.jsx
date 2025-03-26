@@ -4,6 +4,7 @@ import { Button } from "./Button";
 import { useContext } from "react";
 import { Context } from "./Context";
 import { useMediaQuery } from "react-responsive";
+import { useRef, useEffect } from "react";
 
 export default function PledgeCards() {
 	const { pledges, activeCard, setActiveCard } = useContext(Context);
@@ -20,7 +21,7 @@ export default function PledgeCards() {
 					pledgeAmount={pledgeAmount}
 					remainingStock={remainingStock}
 					activeCard={activeCard}
-					handleActiveCard={handleActiveCard}
+					handleActiveCard={() => handleActiveCard(id)}
 				/>
 			))}
 		</fieldset>
@@ -76,7 +77,7 @@ const PledgeCard = ({
 						</p>
 					)}
 				</label>
-				{activeCard === id && <EnterPledge pledgeAmount={pledgeAmount} id={id} />}
+				{activeCard === id && <EnterPledge key={id} pledgeAmount={pledgeAmount} id={id} />}
 			</article>
 		);
 	}
@@ -141,6 +142,7 @@ const PledgeCard = ({
 const EnterPledge = ({ id, pledgeAmount }) => {
 	const [inputValue, setInputValue] = useState(pledgeAmount);
 	const [focus, setFocus] = useState(null);
+	const inputRef = useRef(null);
 	const {
 		setSuccessModal,
 		setModal,
@@ -150,7 +152,16 @@ const EnterPledge = ({ id, pledgeAmount }) => {
 		activeCard,
 		setActiveCard,
 		setTotalAmount,
+		setTotalBackers,
 	} = useContext(Context);
+
+	useEffect(() => {
+		if (activeCard === id && inputRef.current) {
+			setTimeout(() => {
+				inputRef.current.focus();
+			}, 0);
+		}
+	}, [activeCard, id]);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -163,6 +174,7 @@ const EnterPledge = ({ id, pledgeAmount }) => {
 			item.id === activeCard ? { ...item, remainingStock: item.remainingStock - 1 } : item
 		);
 		setPledges(newPledges);
+		setTotalBackers((prev) => prev + 1);
 	};
 
 	return (
@@ -189,6 +201,7 @@ const EnterPledge = ({ id, pledgeAmount }) => {
 						onChange={(e) => setInputValue(e.target.value)}
 						onFocus={() => setFocus(id)}
 						onBlur={(e) => (!e.target.value.trim() && focus === id ? setFocus(null) : setFocus(id))}
+						ref={inputRef}
 					/>
 				</div>
 				<Button
