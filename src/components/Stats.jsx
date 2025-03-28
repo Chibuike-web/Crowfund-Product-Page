@@ -34,7 +34,7 @@ export default function Stats() {
 			<div className="block bg-dark-gray/10 w-full h-[12px] rounded-full">
 				<span
 					className="block bg-moderate-cyan min-h-full rounded-full"
-					style={{ width: `${progress}%` }}
+					style={{ width: `${progress > 100 ? 100 : progress}%` }}
 				></span>
 			</div>
 		</section>
