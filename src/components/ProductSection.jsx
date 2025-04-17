@@ -33,10 +33,9 @@ export default function ProductSection() {
 					<BookmarkButton text="Bookmark" />
 				</div>
 			</section>
-			<AnimatePresence>
-				{modal && <BackProjectModal />}
-				{successModal && <SuccessModal />}
-			</AnimatePresence>
+
+			{modal && <BackProjectModal />}
+			{successModal && <SuccessModal />}
 		</>
 	);
 }

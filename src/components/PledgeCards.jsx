@@ -78,7 +78,20 @@ const PledgeCard = ({
 						</p>
 					)}
 				</label>
-				{activeCard === id && <EnterPledge key={id} pledgeAmount={pledgeAmount} id={id} />}
+				<AnimatePresence initial={false}>
+					{activeCard === id && (
+						<motion.div
+							className="overflow-hidden"
+							key={`enter-pledge-${id}`}
+							initial={{ height: 0, opacity: 0 }}
+							animate={{ height: "auto", opacity: 1 }}
+							exit={{ height: 0, opacity: 0 }}
+							transition={{ duration: 0.3, ease: "easeInOut" }}
+						>
+							<EnterPledge pledgeAmount={pledgeAmount} id={id} />
+						</motion.div>
+					)}
+				</AnimatePresence>
 			</article>
 		);
 	}
@@ -178,7 +191,6 @@ const EnterPledge = ({ id, pledgeAmount }) => {
 				inputRef.current.focus();
 			}, 0);
 		}
-		console.log(progress);
 	}, [activeCard, id]);
 
 	const handleSubmit = (e) => {

@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Context } from "./Context";
 import { CheckIcon } from "./Icons";
 import { Button } from "./Button";
+import { motion } from "motion/react";
 
 export default function SuccessModal() {
 	const { setSuccessModal, reward } = useContext(Context);
@@ -11,7 +12,10 @@ export default function SuccessModal() {
 			className="fixed inset-0 z-50 flex items-center justify-center bg-black/25 px-6"
 			onClick={() => setSuccessModal(false)}
 		>
-			<section
+			<motion.section
+				initial={{ opactiy: 0, y: 50 }}
+				animate={{ opacity: 1, y: 0 }}
+				transition={{ duration: 0.35, ease: "easeOut" }}
 				role="dialog"
 				aria-labelledby="modal-title"
 				aria-modal="true"
@@ -31,7 +35,7 @@ export default function SuccessModal() {
 					className="h-12 bg-moderate-cyan w-[6.75rem] rounded-full text-white cursor-pointer hover:bg-dark-cyan transition-colors duration-300"
 					handleButtonClick={() => setSuccessModal(false)}
 				/>
-			</section>
+			</motion.section>
 		</div>
 	);
 }

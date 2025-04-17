@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Cancel, Harmburger } from "./Icons";
+import { AnimatePresence, motion } from "motion/react";
 
 export default function Navbar() {
 	return (
@@ -40,7 +41,10 @@ const MobileNav = () => {
 						setMobileNav(false);
 					}}
 				>
-					<ul
+					<motion.ul
+						initial={{ opacity: 0, y: 50 }}
+						animate={{ opacity: 1, y: 0 }}
+						transition={{ duration: 0.5 }}
 						className="flex flex-col w-full top-[3.5rem] rounded-[0.5rem] bg-white text-[1rem] text-black font-medium"
 						onClick={(e) => e.stopPropagation()}
 					>
@@ -53,7 +57,7 @@ const MobileNav = () => {
 						<li>
 							<span className="p-6 block">Get Started</span>
 						</li>
-					</ul>
+					</motion.ul>
 				</div>
 			)}
 		</>
