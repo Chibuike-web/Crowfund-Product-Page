@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { Context } from "./Context";
 import { useMediaQuery } from "react-responsive";
 import { useRef, useEffect } from "react";
+import { motion, AnimatePresence } from "motion/react";
 
 export default function PledgeCards() {
 	const { pledges, activeCard, setActiveCard } = useContext(Context);
@@ -134,7 +135,20 @@ const PledgeCard = ({
 					</p>
 				</div>
 			</label>
-			{activeCard === id && <EnterPledge pledgeAmount={pledgeAmount} id={id} />}
+			<AnimatePresence initial={false}>
+				{activeCard === id && (
+					<motion.div
+						className="overflow-hidden"
+						key={`enter-pledge-${id}`}
+						initial={{ height: 0, opacity: 0 }}
+						animate={{ height: "auto", opacity: 1 }}
+						exit={{ height: 0, opacity: 0 }}
+						transition={{ duration: 0.3, ease: "easeInOut" }}
+					>
+						<EnterPledge pledgeAmount={pledgeAmount} id={id} />
+					</motion.div>
+				)}
+			</AnimatePresence>
 		</article>
 	);
 };

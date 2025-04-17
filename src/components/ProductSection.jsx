@@ -4,6 +4,7 @@ import BackProjectModal from "./BackProjectModal";
 import { useContext } from "react";
 import { Context } from "./Context";
 import SuccessModal from "./SuccessModal";
+import { AnimatePresence } from "motion/react";
 
 export default function ProductSection() {
 	const { modal, setModal, successModal } = useContext(Context);
@@ -32,8 +33,10 @@ export default function ProductSection() {
 					<BookmarkButton text="Bookmark" />
 				</div>
 			</section>
-			{modal && <BackProjectModal />}
-			{successModal && <SuccessModal />}
+			<AnimatePresence>
+				{modal && <BackProjectModal />}
+				{successModal && <SuccessModal />}
+			</AnimatePresence>
 		</>
 	);
 }
